@@ -8,6 +8,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://admin:123456d@ds021034.mlab.com:21034/project');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
