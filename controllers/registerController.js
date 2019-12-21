@@ -16,7 +16,7 @@ module.exports = {
             birthday: req.body.birthday,
             province: req.body.province,
             district: req.body.district,
-            doctype: "admin"
+            doctype: "member"
         });
         // save to database
         user.save();
