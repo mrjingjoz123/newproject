@@ -21,6 +21,11 @@ router.route('/saveRegister').post(registerController.saveRegister);
 
 // GET Admin Page
 router.route('/home').get(adminController.getHomepage);
+router.route('/contact').get(adminController.getContactpage);
+router.route('/list').get(adminController.getListpage);
+router.route('/manager').get(adminController.getManagerpage);
+router.route('/report').get(adminController.getReportpage);
+
 
 // // test 
 // router.get('/save', function(req, res, next) {

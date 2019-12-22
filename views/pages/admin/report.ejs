@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Home</title>
+<title>Report</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -17,6 +17,21 @@
     
     body {
         font-size: 16px;
+    }
+    
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    th,
+    td {
+        text-align: left;
+        padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
     }
 </style>
 
@@ -48,11 +63,43 @@
 
         <!-- Header -->
         <div class="w3-container" style="margin-top:80px" id="showcase">
-            <h1 class="w3-jumbo" style="text-align: center;"><b>หน้าหลัก</b></h1>
+            <h1 class="w3-jumbo" style="text-align: center;"><b>แจ้งเตือน</b></h1>
 
         </div>
+        <div>
+            <table>
+                <tr>
+                    <th>ลำดับที่</th>
+                    <th>ชื่อผู้ใช้</th>
+                    <th>หัวข้อ</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>สมชาย</td>
+                    <td>ระบบขัดข้อง</td>
+                    <td>
+                        <button style="margin-right: 10px;" onclick="document.getElementById('id01').style.display='block'">อ่าน</button>
+                        <button>ลบ</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
-
+        <div id="id01" class="w3-modal">
+            <div class="w3-modal-content">
+                <div class="w3-container">
+                    <center>
+                        <h3>แจ้งเตือน</h3>
+                        <p>จาก สมชาย</p>
+                        <p>ระบบขัดข้อง</p>
+                        <p>สร้างรายการเพาะปลูกไม่ได้</p>
+                        <button style="margin-bottom: 20px;margin-top: 30px;" onclick="location.href='contactm.html'">ติดต่อกลับ</button>
+                        <button onclick="document.getElementById('id01').style.display='none'" type="button">กลับ</button>
+                    </center>
+                </div>
+            </div>
+        </div>
 
 
 
