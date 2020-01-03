@@ -20,6 +20,8 @@ module.exports = {
         });
         // save to database
         user.save();
+
         res.render('pages/login');
     }
+
 }
