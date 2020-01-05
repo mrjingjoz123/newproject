@@ -64,25 +64,38 @@
         <!-- Header -->
         <div class="w3-container" style="margin-top:80px" id="showcase">
             <h1 class="w3-jumbo" style="text-align: center;"><b>แจ้งเตือน</b></h1>
-
+            <!-- <a href="/saveMes">test</a> -->
         </div>
         <div>
             <table>
-                <tr>
-                    <th>ลำดับที่</th>
-                    <th>ชื่อผู้ใช้</th>
-                    <th>หัวข้อ</th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>สมชาย</td>
-                    <td>ระบบขัดข้อง</td>
-                    <td>
-                        <button style="margin-right: 10px;" onclick="document.getElementById('id01').style.display='block'">อ่าน</button>
-                        <button>ลบ</button>
-                    </td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>ลำดับที่</th>
+                        <th>ชื่อผู้ใช้</th>
+                        <th>หัวข้อ</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i =0 ; i< mes.length ; i ++ ){%>
+                        <tr>
+                            <td>
+                                <%= i + 1  %>
+                            </td>
+                            <td>
+                                <%= mes[i].username %>
+                            </td>
+                            <td>
+                                <%= mes[i].headname %>
+                            </td>
+                            <td>
+                                <button style="margin-right: 10px;" onclick="document.getElementById('id01').style.display='block'">อ่าน</button>
+                                <button>ลบ</button>
+                            </td>
+                        </tr>
+
+                        <%} %>
+                </tbody>
             </table>
         </div>
 
@@ -90,12 +103,14 @@
             <div class="w3-modal-content">
                 <div class="w3-container">
                     <center>
+
                         <h3>แจ้งเตือน</h3>
-                        <p>จาก สมชาย</p>
+                        <p></p>
                         <p>ระบบขัดข้อง</p>
                         <p>สร้างรายการเพาะปลูกไม่ได้</p>
                         <button style="margin-bottom: 20px;margin-top: 30px;" onclick="location.href='contactm.html'">ติดต่อกลับ</button>
                         <button onclick="document.getElementById('id01').style.display='none'" type="button">กลับ</button>
+
                     </center>
                 </div>
             </div>

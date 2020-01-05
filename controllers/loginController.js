@@ -1,5 +1,5 @@
 const User = require('../model/userModel');
-const Swal = require('sweetalert2')
+
 
 module.exports = {
     getLogin: async(req, res) => {

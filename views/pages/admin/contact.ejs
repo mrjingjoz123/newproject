@@ -18,6 +18,21 @@
     body {
         font-size: 16px;
     }
+    
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    th,
+    td {
+        text-align: left;
+        padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 </style>
 
 <body>
@@ -51,30 +66,74 @@
             <h1 class="w3-jumbo" style="text-align: center;"><b>ติดต่อสมาชิก</b></h1>
 
         </div>
-        <div>
-            <h3>ถึง</h3>
-            <label class="container" style="margin-left: 50px;">
-            <input type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-            สมาชิกทุกคน
-          </label>
-            <br>
-            <label class="container" style="margin-left: 50px;">
-            <input type="checkbox">
-            <span class="checkmark"></span>
-            สมาชิกบางคน
-          </label>
-            <h3>ชื่อหัวข้อ</h3>
-            <input type="text" style="width: 50%;">
-            <h3>ข้อความ</h3>
-            <input type="text" style="width: 50%;padding: 20px 20px;">
-        </div>
-        <div style="margin-top: 20px;margin-left: 25%;">
-            <button>ยืนยัน</button>
-            <button>ยกเลิก</button>
-        </div>
+        <form action="/saveReportAdmin" method="POST">
+            <div>
+                <h3>ถึง</h3>
+                <div style="margin-top: 20px;margin-left: 5%;">
+                    <button type="button" id="button" value="button" onclick="setColor1('button','button2')"> สมาชิกทุกคน</button>
+                    <button type="button" id="button2" value="button" onclick="setColor2('button2','button')"> สมาชิกบางคน</button>
+                </div>
 
+                <h3>ชื่อหัวข้อ</h3>
+                <input type="text" name="headname" style="width: 50%;" required>
+                <h3>ข้อความ</h3>
+                <input type="text" name="bodytext" style="width: 50%;padding: 20px 20px;" required>
+            </div>
+            <div style="margin-top: 20px;">
+                <button type="submit">ยืนยัน</button>
+            </div>
+        </form>
 
+        <div id="id01" class="w3-modal">
+            <div class="w3-modal-content">
+                <div class="w3-container">
+                    <center>
+                        <h3>รายชื่อผู้ใช้ผู้ใช้งาน</h3>
+                        <table>
+                            <thead>
+
+                                <tr>
+                                    <th>ลำดับที่</th>
+                                    <th>ชื่อผู้ใช้</th>
+                                    <th>ชื่อ-นามสกุล</th>
+                                    <th>อีเมลล์</th>
+                                    <th>สถานะ</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(var i =0 ; i< list.length ; i ++ ){%>
+                                    <tr>
+                                        <td>
+                                            <%= i + 1  %>
+                                        </td>
+                                        <td>
+                                            <%= list[i].username %>
+                                        </td>
+                                        <td>
+                                            <%= list[i].firstname %>
+                                                <%= list[i].lastname %>
+                                        </td>
+                                        <td>
+                                            <%= list[i].email %>
+                                        </td>
+                                        <td>
+                                            <%= list[i].doctype %>
+                                        </td>
+                                        <td>
+                                            <button>เลือก</button>
+                                        </td>
+                                    </tr>
+                                    <%} %>
+                            </tbody>
+                        </table>
+                        <br>
+                        <button style="margin-bottom: 20px;margin-top: 30px;">ยืนยัน</button>
+                        <button onclick="document.getElementById('id01').style.display='none'" type="button">กลับ</button>
+                    </center>
+                </div>
+            </div>
+        </div>
 
 
 
@@ -89,5 +148,25 @@
 
 
 </body>
+<script>
+    function setColor1(btn, btn2) {
+
+        var property = document.getElementById(btn);
+        var property2 = document.getElementById(btn2);
+
+        property.style.backgroundColor = '#35DC56';
+        property2.style.backgroundColor = '#FFFFFF';
+    }
+
+    function setColor2(btn, btn2) {
+
+        var property = document.getElementById(btn);
+        var property2 = document.getElementById(btn2);
+
+        property.style.backgroundColor = '#35DC56';
+        property2.style.backgroundColor = '#FFFFFF';
+        document.getElementById('id01').style.display = 'block';
+    }
+</script>
 
 </html>

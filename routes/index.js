@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
+
 const loginController = require('../controllers/loginController');
 const registerController = require('../controllers/registerController');
 const adminController = require('../controllers/adminController');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -26,17 +28,14 @@ router.route('/list').get(adminController.getListpage);
 router.route('/manager').get(adminController.getManagerpage);
 router.route('/report').get(adminController.getReportpage);
 
+router.route('/saveReportAdmin').post(adminController.saveReportAdmin);
+router.route('/saveList').post(adminController.saveList);
 
-// // test 
-// router.get('/save', function(req, res, next) {
-//     res.render('pages/login');
-// });
-// router.get('/cancel', function(req, res, next) {
-//     res.render('pages/login');
-// });
+// router.route('/saveMes').get(adminController.saveMes);
 
-// router.route('/adduser').post(userController.addUser);
-// router.route('/gotest').get(userController.select);
+
+
+
 
 
 
