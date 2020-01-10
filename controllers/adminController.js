@@ -43,9 +43,34 @@ module.exports = {
         // save to database
         mes.save();
         res.redirect(req.get('referer'));
+    },
+    deleteUser: async(req, res) => {
+        var id = req.params.id;
+        User.findByIdAndRemove(id, (err) => {
+            if (err) return res.status(500).send(err);
+            return res.redirect(req.get('referer'));
+        });
+    },
+    showUser: async(req, res) => {
+        var id = req.params.id;
+        User.findById(id, (err, data) => {
+            if (err) return res.status(500).send(err);
+            return res.render('pages/admin/test', { data });
+        });
+    },
+    deleteList: async(req, res) => {
+        var id = req.params.id;
+        Cultivate.findByIdAndRemove(id, (err) => {
+            if (err) return res.status(500).send(err);
+            return res.redirect(req.get('referer'));
+        });
+    },
+    deleteMes: async(req, res) => {
+        var id = req.params.id;
+        Report.findByIdAndRemove(id, (err) => {
+            if (err) return res.status(500).send(err);
+            return res.redirect(req.get('referer'));
+        });
     }
-
-
-
 
 }

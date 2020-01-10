@@ -99,22 +99,22 @@
                                 <%= list[i].doctype %>
                             </td>
                             <td>
-                                <button style="margin-right: 10px;" onclick="document.getElementById('id01').style.display='block'">ดู</button>
-                                <button>ลบ</button>
+                                <button style="margin-right: 10px;" onclick="showUser('<%= list[i].id %>')">ดู</button>
+
+                                <button onclick="deleteUser('<%= list[i].id %>')">ลบ</button>
                             </td>
                         </tr>
                         <%} %>
                 </tbody>
             </table>
         </div>
-
         <div id="id01" class="w3-modal">
             <div class="w3-modal-content">
                 <div class="w3-container">
                     <center>
                         <h3>ข้อมูลผู้ใช้งาน</h3>
                         <p>ชื่อผู้ใช้</p>
-                        <input type="text" style="width: 40%;">
+                        <p></p>
                         <p>อีเมลล์</p>
                         <input type="email" style="width: 40%;">
                         <p>เบอร์โทรศัพท์</p>
@@ -128,20 +128,12 @@
                         <p>อำเภอ</p>
                         <input type="text" style="width: 40%;">
                         <br>
-                        <button style="margin-bottom: 20px;margin-top: 30px;">ยืนยัน</button>
                         <button onclick="document.getElementById('id01').style.display='none'" type="button">กลับ</button>
                     </center>
+
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
 
 
         <!-- End page content -->
@@ -151,5 +143,15 @@
 
 
 </body>
+<script>
+    function deleteUser(id) {
+        window.location.href = '/deleteUser/' + id
+
+    }
+
+    function showUser(id) {
+        window.location.href = '/showUser/' + id
+    }
+</script>
 
 </html>

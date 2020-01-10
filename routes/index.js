@@ -31,7 +31,10 @@ router.route('/report').get(adminController.getReportpage);
 router.route('/saveReportAdmin').post(adminController.saveReportAdmin);
 router.route('/saveList').post(adminController.saveList);
 
-// router.route('/saveMes').get(adminController.saveMes);
+router.route('/deleteList/:id').get(adminController.deleteList);
+router.route('/deleteUser/:id').get(adminController.deleteUser);
+router.route('/deleteMes/:id').get(adminController.deleteMes);
+router.route('/showUser/:id').get(adminController.showUser);
 
 
 

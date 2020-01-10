@@ -90,7 +90,7 @@
                             </td>
                             <td>
                                 <button style="margin-right: 10px;" onclick="document.getElementById('id01').style.display='block'">อ่าน</button>
-                                <button>ลบ</button>
+                                <button onclick="deleteMes('<%= mes[i].id %>')">ลบ</button>
                             </td>
                         </tr>
 
@@ -131,5 +131,10 @@
 
 
 </body>
+<script>
+    function deleteMes(id) {
+        window.location.href = '/deleteMes/' + id
+    }
+</script>
 
 </html>

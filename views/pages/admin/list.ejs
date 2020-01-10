@@ -98,7 +98,7 @@
                             <td>
                                 <%= list[i].unit %>
                             </td>
-                            <td><button>ลบ</button></td>
+                            <td><button onclick="deleteList('<%= list[i].id %>')">ลบ</button></td>
                         </tr>
 
                         <%} %>
@@ -147,6 +147,10 @@
     </div>
 
 </body>
-
+<script>
+    function deleteList(id) {
+        window.location.href = '/deleteList/' + id
+    }
+</script>
 
 </html>
