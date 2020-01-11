@@ -71,6 +71,26 @@ module.exports = {
             if (err) return res.status(500).send(err);
             return res.redirect(req.get('referer'));
         });
+    },
+    editUser: async(req, res) => {
+        var id = req.params.id;
+        User.findById(id, (err, data) => {
+            var date = data.birthday;
+            let dateNow = date.toISOString().replace(/T/).substr(0, 10);
+            if (err) return res.status(500).send(err);
+            return res.render('pages/admin/testedit', { data, dateNow });
+        });
+    },
+    saveEditUser: async(req, res) => {
+        User.findByIdAndUpdate(req.params.id, req.body, { new: true },
+            (err) => {
+                if (err) return res.status(500).send(err);
+                return
+            }
+        );
+        const list = await User.find();
+        res.render('pages/admin/manager', { list });
     }
+
 
 }

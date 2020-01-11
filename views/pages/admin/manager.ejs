@@ -100,7 +100,7 @@
                             </td>
                             <td>
                                 <button style="margin-right: 10px;" onclick="showUser('<%= list[i].id %>')">ดู</button>
-
+                                <button style="margin-right: 10px;" onclick="editUser('<%= list[i].id %>')">แก้ไข</button>
                                 <button onclick="deleteUser('<%= list[i].id %>')">ลบ</button>
                             </td>
                         </tr>
@@ -151,6 +151,10 @@
 
     function showUser(id) {
         window.location.href = '/showUser/' + id
+    }
+
+    function editUser(id) {
+        window.location.href = '/editUser/' + id
     }
 </script>
 
