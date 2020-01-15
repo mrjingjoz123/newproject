@@ -34,9 +34,13 @@ router.route('/saveList').post(adminController.saveList);
 router.route('/deleteList/:id').get(adminController.deleteList);
 router.route('/deleteUser/:id').get(adminController.deleteUser);
 router.route('/deleteMes/:id').get(adminController.deleteMes);
-router.route('/showUser/:id').get(adminController.showUser);
-router.route('/editUser/:id').get(adminController.editUser);
+
 router.route('/saveEditUser/:id').post(adminController.saveEditUser);
+
+
+
+
+
 
 
 

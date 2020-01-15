@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<!-- modal -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <style>
     body,
     h1,
@@ -89,33 +94,40 @@
                                 <%= mes[i].headname %>
                             </td>
                             <td>
-                                <button style="margin-right: 10px;" onclick="document.getElementById('id01').style.display='block'">อ่าน</button>
+                                <button style="margin-right: 10px;" onclick="readMes('<%= mes[i].headname %>','<%= mes[i].bodytext %>','<%= mes[i].doctype %>','<%= mes[i].username %>','<%= mes[i].id %>')">อ่าน</button>
                                 <button onclick="deleteMes('<%= mes[i].id %>')">ลบ</button>
                             </td>
                         </tr>
-
                         <%} %>
                 </tbody>
             </table>
         </div>
 
-        <div id="id01" class="w3-modal">
-            <div class="w3-modal-content">
-                <div class="w3-container">
-                    <center>
 
-                        <h3>แจ้งเตือน</h3>
-                        <p></p>
-                        <p>ระบบขัดข้อง</p>
-                        <p>สร้างรายการเพาะปลูกไม่ได้</p>
-                        <button style="margin-bottom: 20px;margin-top: 30px;" onclick="location.href='contactm.html'">ติดต่อกลับ</button>
-                        <button onclick="document.getElementById('id01').style.display='none'" type="button">กลับ</button>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">จดหมาย</h4>
+                        <label>จาก</label>
+                        <label id="username"></label>
+                    </div>
+                    <div class="modal-body">
+                        <h4 id="headname"></h4>
 
-                    </center>
+                        <p id="bodytext"></p>
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" onclick="askMes(value)" id="ask">อ่าน</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+                    </div>
                 </div>
+
             </div>
         </div>
-
 
 
 
@@ -134,6 +146,19 @@
 <script>
     function deleteMes(id) {
         window.location.href = '/deleteMes/' + id
+    }
+
+    function readMes(headname, bodytext, doctype, username, id) {
+        document.getElementById("username").innerHTML = username;
+        document.getElementById("headname").innerHTML = headname;
+        document.getElementById("bodytext").innerHTML = bodytext;
+        document.getElementById("ask").value = id;
+        $('#myModal').modal('show');
+    }
+
+    function askMes(idMes) {
+        window.location.href = idMes
+
     }
 </script>
 
