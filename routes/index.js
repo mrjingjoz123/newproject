@@ -29,7 +29,10 @@ router.route('/manager').get(adminController.getManagerpage);
 router.route('/report').get(adminController.getReportpage);
 
 router.route('/saveReportAdmin').post(adminController.saveReportAdmin);
+router.route('/saveReportAdminSome/:user').post(adminController.saveReportAdminSome);
+
 router.route('/saveList').post(adminController.saveList);
+
 
 router.route('/deleteList/:id').get(adminController.deleteList);
 router.route('/deleteUser/:id').get(adminController.deleteUser);

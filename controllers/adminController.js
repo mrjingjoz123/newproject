@@ -35,10 +35,16 @@ module.exports = {
         res.redirect(req.get('referer'));
     },
     saveReportAdmin: async(req, res) => {
-        let mes = new Reportadmin({
+        const list = await User.find();
+        var username = new Array();
+        for (let i = 0; i < list.length; i++) {
+            username.push(list[i].username);
+        }
+
+        let mes = await new Reportadmin({
             headname: req.body.headname,
             bodytext: req.body.bodytext,
-            doctype: "alluser"
+            username: username
         });
         // save to database
         mes.save();
@@ -74,6 +80,30 @@ module.exports = {
         );
         const list = await User.find();
         res.render('pages/admin/manager', { list });
+    },
+    saveReportAdminSome: async(req, res) => {
+        var id = req.params.user;
+        var s = id
+        var matches = ['']
+        var open = false
+        for (i in s) {
+            if (s[i] == ',' && !open) {
+                matches.push('')
+
+            } else {
+                matches[matches.length - 1] += s[i]
+            }
+        }
+
+        let mes = await new Reportadmin({
+            headname: req.body.headname,
+            bodytext: req.body.bodytext,
+            username: matches
+
+        });
+        // // save to database
+        mes.save();
+        res.redirect(req.get('referer'));
     }
 
 

@@ -71,74 +71,76 @@
             <h1 class="w3-jumbo" style="text-align: center;"><b>ติดต่อสมาชิก</b></h1>
 
         </div>
-        <form action="/saveReportAdmin" method="POST">
-            <div>
-                <h3>ถึง</h3>
-                <div style="margin-top: 20px;margin-left: 5%;">
-                    <button type="button" id="button" value="button" onclick="setColor1('button','button2')"> สมาชิกทุกคน</button>
-                    <button type="button" id="button2" value="button" onclick="setColor2('button2','button')"> สมาชิกบางคน</button>
-                </div>
 
-                <h3>ชื่อหัวข้อ</h3>
-                <input type="text" name="headname" style="width: 50%;" required>
-                <h3>ข้อความ</h3>
-                <input type="text" name="bodytext" style="width: 50%;padding: 20px 20px;" required>
-            </div>
-            <div style="margin-top: 20px;">
-                <button type="submit">ยืนยัน</button>
-            </div>
-        </form>
-
-        <div id="id01" class="w3-modal">
-            <div class="w3-modal-content">
-                <div class="w3-container">
-                    <center>
-                        <h3>รายชื่อผู้ใช้ผู้ใช้งาน</h3>
-                        <table>
-                            <thead>
-
-                                <tr>
-                                    <th>ลำดับที่</th>
-                                    <th>ชื่อผู้ใช้</th>
-                                    <th>ชื่อ-นามสกุล</th>
-                                    <th>อีเมลล์</th>
-                                    <th>สถานะ</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% for(var i =0 ; i< list.length ; i ++ ){%>
-                                    <tr>
-                                        <td>
-                                            <%= i + 1  %>
-                                        </td>
-                                        <td>
-                                            <%= list[i].username %>
-                                        </td>
-                                        <td>
-                                            <%= list[i].firstname %>
-                                                <%= list[i].lastname %>
-                                        </td>
-                                        <td>
-                                            <%= list[i].email %>
-                                        </td>
-                                        <td>
-                                            <%= list[i].doctype %>
-                                        </td>
-                                        <td>
-                                            <button>เลือก</button>
-                                        </td>
-                                    </tr>
-                                    <%} %>
-                            </tbody>
-                        </table>
-                        <br>
-                        <button style="margin-bottom: 20px;margin-top: 30px;">ยืนยัน</button>
-                        <button onclick="document.getElementById('id01').style.display='none'" type="button">กลับ</button>
-                    </center>
-                </div>
+        <div>
+            <h3>ถึง</h3>
+            <div style="margin-top: 20px;margin-left: 5%;">
+                <button type="button" id="button" value="all" onclick="setColor1('button','button2')" style="background-color: #35DC56;"> สมาชิกทุกคน</button>
+                <button type="button" id="button2" onclick="setColor2('button2','button')"> สมาชิกบางคน</button>
             </div>
         </div>
+        <form id="myForm" action="nothing.asp" method="POST">
+            <h3>ชื่อหัวข้อ</h3>
+            <input type="text" name="headname" style="width: 50%;" required>
+            <h3>ข้อความ</h3>
+            <input type="text" name="bodytext" style="width: 50%;padding: 20px 20px;" required>
+
+            <div style="margin-top: 20px;">
+                <button onclick="sendMes(document.getElementById('button').value,document.getElementById('button2').value)">ยืนยัน</button>
+            </div>
+            </from>
+
+
+            <div id="id01" class="w3-modal">
+                <div class="w3-modal-content">
+                    <div class="w3-container">
+                        <center>
+                            <h3>รายชื่อผู้ใช้ผู้ใช้งาน</h3>
+                            <table>
+                                <thead>
+
+                                    <tr>
+                                        <th>ลำดับที่</th>
+                                        <th>ชื่อผู้ใช้</th>
+                                        <th>ชื่อ-นามสกุล</th>
+                                        <th>อีเมลล์</th>
+                                        <th>สถานะ</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(var i =0 ; i< list.length ; i ++ ){%>
+                                        <tr>
+                                            <td>
+                                                <%= i + 1  %>
+                                            </td>
+                                            <td>
+                                                <%= list[i].username %>
+                                            </td>
+                                            <td>
+                                                <%= list[i].firstname %>
+                                                    <%= list[i].lastname %>
+                                            </td>
+                                            <td>
+                                                <%= list[i].email %>
+                                            </td>
+                                            <td>
+                                                <%= list[i].doctype %>
+                                            </td>
+                                            <td>
+                                                <button onclick="chlist('<%= list[i].username %>',value)" id="<%= list[i].username %>" value="1">เลือก</button>
+                                            </td>
+                                        </tr>
+                                        <%} %>
+                                </tbody>
+                            </table>
+
+                            <button onclick="document.getElementById('id01').style.display='none'" type="button">กลับ</button>
+
+                        </center>
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -146,7 +148,7 @@
 
 
 
-        <!-- End page content -->
+            <!-- End page content -->
     </div>
 
 
@@ -154,23 +156,57 @@
 
 </body>
 <script>
+    var user = new Array();
+
     function setColor1(btn, btn2) {
 
-        var property = document.getElementById(btn);
-        var property2 = document.getElementById(btn2);
+        var all = document.getElementById(btn);
+        var some = document.getElementById(btn2);
 
-        property.style.backgroundColor = '#35DC56';
-        property2.style.backgroundColor = '#FFFFFF';
+        all.style.backgroundColor = '#35DC56';
+        some.style.backgroundColor = '#FFFFFF';
+        all.value = "all"
+        some.value = "null"
     }
 
     function setColor2(btn, btn2) {
 
-        var property = document.getElementById(btn);
-        var property2 = document.getElementById(btn2);
+        var some = document.getElementById(btn);
+        var all = document.getElementById(btn2);
 
-        property.style.backgroundColor = '#35DC56';
-        property2.style.backgroundColor = '#FFFFFF';
+        some.style.backgroundColor = '#35DC56';
+        all.style.backgroundColor = '#FFFFFF';
         document.getElementById('id01').style.display = 'block';
+        some.value = "some"
+        all.value = "null"
+    }
+
+    function sendMes(bt, bt2) {
+        if (bt == "all") {
+            document.getElementById("myForm").action = "/saveReportAdmin";
+
+        } else if (bt2 == "some") {
+
+            document.getElementById("myForm").action = "/saveReportAdminSome/" + user;
+
+        }
+    }
+
+    function chlist(id, value) {
+        var ch = document.getElementById(id);
+        if (value == 1) {
+            ch.style.backgroundColor = '#35DC56';
+            ch.value = 0;
+            user.push(id);
+        } else {
+            ch.style.backgroundColor = '#FFFFFF';
+            ch.value = 1;
+            for (let i = 0; i < user.length; i++) {
+                if (id == user[i]) {
+                    user.splice(i, 1);
+                }
+            }
+        }
     }
 </script>
 

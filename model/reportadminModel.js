@@ -10,10 +10,9 @@ const ReportadminModel = new Schema({
         type: String,
         require: true
     },
-    doctype: {
-        type: String,
-        require: true
-    }
+    username: [String]
+
+
 });
 
 const Reportadmin = mongoose.model('reportadmin', ReportadminModel, 'reportadmin');
